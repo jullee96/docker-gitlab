@@ -1,7 +1,7 @@
 version: "3"
 services:
   gitlab:
-    image: "gitlab/gitlab-ce:latest"
+    image: "gitlab/gitlab-ee:latest"
     container_name: gitlab
     restart: always
     hostname: "{your domain}"
@@ -15,8 +15,8 @@ services:
     ports:
       - "28080:80"
       - "2224:22"
-    # volumes:
-    #   - "./config:/etc/gitlab"
-    #   - "./logs:/var/log/gitlab"
-    #   - "./data:/var/opt/gitlab"
+    volumes:
+      - "${GITLAB_HOME}/config:/etc/gitlab:Z" # ${GITLAB_HOME} : /var/gitlab
+      - "${GITLAB_HOME}/logs:/var/log/gitlab:Z"
+      - "${GITLAB_HOME}/data:/var/opt/gitlab:Z"
    
